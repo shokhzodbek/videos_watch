@@ -1,0 +1,81 @@
+@import '../../index.scss';
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 3rem;
+	background-color: $black-primary;
+	height: 10vh;
+	width: 100%;
+}
+
+.header_menu {
+	display: none;
+}
+.header_logo {
+	width: 30px;
+	height: 30px;
+	object-fit: contain;
+
+	display: block;
+}
+
+.header form {
+	flex: 0.6;
+	display: flex;
+	padding: 0.1rem;
+	margin: 0.1rem;
+	border-radius: 30px;
+	border: 1px solid;
+	background-color: $black-secondary;
+}
+
+.header form input {
+	width: 100%;
+	border: none;
+	outline: none;
+	font-weight: 500;
+	background-color: transparent;
+	padding: 0.3rem;
+	color: $text-color;
+	border-radius: 30px;
+}
+.header form button {
+	padding: 0 1.25rem;
+	color: $text-color;
+	background-color: transparent;
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	&:focus {
+		outline: none;
+		border: none;
+	}
+}
+
+.header .header_icons {
+	flex: 0.15;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+@media (max-width: $breakpoint-small) {
+	.header {
+		padding: 1rem;
+	}
+
+	.header form {
+		flex: 1;
+	}
+
+	.header .header_menu {
+		display: block;
+	}
+
+	.header .header_logo {
+		display: none;
+	}
+	.header .header_icons > *:not(div) {
+		display: none;
+	}
+}
