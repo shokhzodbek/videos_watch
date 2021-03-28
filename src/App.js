@@ -3,9 +3,10 @@ import Header from './components/header/Header';
 import {Container} from 'react-bootstrap'
 import Sidebar from './components/sidebar/Sidebar';
 import HomeScreen from './pages/homescreen/HomeScreen'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Login from './pages/loginScreen/Login';
- import { BrowserRouter as Router,Redirect,Route,Switch} from 'react-router-dom'
+ import { Route,Switch, useHistory} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 const Layout = ({children})=>{
   const [sidebar,setSidebar] = useState(false);
   const handleToggle = (tog)=> setSidebar(tog=>!tog);
@@ -25,9 +26,19 @@ const Layout = ({children})=>{
 }
 
 function App() {
+  const history = useHistory()
+  const {accessToken,loading} = useSelector(state=>state.auth)
+  useEffect(()=>{
+    if(!loading && !accessToken){
+      history.push('/')
+       
+    }
+
+
+  },[accessToken,loading,history])
   return (
     <div className="app">
-      <Router>
+  
         <Switch>
           <Route path="/login" component={Login}/>
           <Route path="/search">
@@ -45,7 +56,7 @@ function App() {
          
 
         </Switch>
-      </Router>
+     
     </div>
   );
 }

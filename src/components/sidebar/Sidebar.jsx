@@ -9,6 +9,9 @@ import {
 	MdHome,
 	MdSentimentDissatisfied
 } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { log_out } from '../../redux/actions/auth_action';
+
 const data = [
 	{
 		id: '1',
@@ -48,6 +51,10 @@ const NavItem = ({ Icon, title }) => {
 	);
 };
 function Sidebar({ sidebar, handle }) {
+	const dispatch = useDispatch();
+	const LogOut = () => {
+		dispatch(log_out);
+	};
 	return (
 		<nav className={`sidebar ${sidebar && 'open'}`} onClick={() => handle()}>
 			{data.map((item) => (
@@ -55,7 +62,7 @@ function Sidebar({ sidebar, handle }) {
 			))}
 
 			<hr />
-			<NavItem Icon={MdExitToApp} title="Log Out" />
+			<NavItem onClick={LogOut} Icon={MdExitToApp} title="Log Out" />
 			<hr />
 		</nav>
 	);
